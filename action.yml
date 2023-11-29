@@ -7,6 +7,9 @@ inputs:
   scan-target:
     description: 'Asset to scan'
     required: true
+  scope:
+    description: 'Scope [Squashed AllLayers]'
+    default: Squashed
   
 runs:
   using: composite
@@ -16,4 +19,4 @@ runs:
       uses: docker://darinpope/grype:0.73.3
       shell: sh
       run: |
-        grype ${{ inputs.scan-target }}
+        grype ${{ inputs.scan-target }} --scope ${{ inputs.scope}}
