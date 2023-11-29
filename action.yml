@@ -1,0 +1,19 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: action
+name: 'Grype'
+description: 'Grype'
+
+inputs:
+  scan-target:
+    description: 'Asset to scan'
+    required: true
+  
+runs:
+  using: composite
+  steps:
+    - id: grype
+      name: Scan using Grype
+      uses: docker://darinpope/grype:0.73.3
+      shell: sh
+      run: |
+        grype ${{ inputs.scan-target }}
