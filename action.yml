@@ -19,4 +19,5 @@ runs:
       uses: docker://darinpope/grype:0.73.3
       shell: sh
       run: |
+        whoami
         grype ${{ inputs.scan-target }} --scope ${{ inputs.scope}}
